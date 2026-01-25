@@ -1,0 +1,35 @@
+<!-- cadastro.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Venda</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Controle de Vendas</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cadastro.html">Cadastrar Venda</a>
+            <a href="lista.html">Ver Vendas</a>
+        </nav>
+    </header>
+    <main>
+        <form id="form-venda">
+            <label for="produto">Produto:</label>
+            <input type="text" id="produto" required>
+            
+            <label for="qtd">Quantidade:</label>
+            <input type="number" id="qtd" min="1" required>
+            
+            <label for="preco">Preço Unitário (R$):</label>
+            <input type="number" id="preco" step="0.01" min="0.01" required>
+            
+            <button type="submit">Salvar Venda</button>
+        </form>
+    </main>
+    <script src="script.js"></script> <!-- JS aqui para capturar o form -->
+</body>
+</html>

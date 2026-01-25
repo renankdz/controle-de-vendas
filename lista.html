@@ -1,0 +1,36 @@
+<!-- lista.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Vendas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Controle de Vendas</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="cadastro.html">Cadastrar Venda</a>
+            <a href="lista.html">Ver Vendas</a>
+        </nav>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody></tbody> <!-- JS preenche aqui -->
+        </table>
+        <p id="total">Total Vendido: R$ 0.00</p>
+    </main>
+    <script src="script.js"></script> <!-- JS aqui para exibir a tabela -->
+</body>
+</html>
