@@ -1,6 +1,6 @@
-// =====================
-// UTILITÁRIOS
-// =====================
+// =========================
+// DADOS (localStorage)
+// =========================
 function getVendas() {
     return JSON.parse(localStorage.getItem('vendas')) || [];
 }
@@ -9,9 +9,9 @@ function setVendas(vendas) {
     localStorage.setItem('vendas', JSON.stringify(vendas));
 }
 
-// =====================
-// CADASTRO
-// =====================
+// =========================
+// AÇÕES
+// =========================
 function salvarVenda(event) {
     event.preventDefault();
 
@@ -19,8 +19,8 @@ function salvarVenda(event) {
     const qtd = parseInt(document.getElementById('qtd').value);
     const preco = parseFloat(document.getElementById('preco').value);
 
-    if (!produto || qtd <= 0 || isNaN(preco) || preco <= 0) {
-        alert('Preencha todos os campos corretamente!');
+    if (!produto || qtd <= 0 || preco <= 0 || isNaN(preco)) {
+        alert('Preencha todos os campos corretamente');
         return;
     }
 
@@ -35,13 +35,24 @@ function salvarVenda(event) {
     vendas.push(venda);
     setVendas(vendas);
 
-    alert('Venda cadastrada com sucesso!');
     document.querySelector('form').reset();
+    alert('Venda salva com sucesso!');
 }
 
-// =====================
-// LISTAGEM
-// =====================
+function deletarVenda(index) {
+    const vendas = getVendas();
+
+    if (!confirm('Deseja realmente excluir esta venda?')) return;
+
+    vendas.splice(index, 1);
+    setVendas(vendas);
+    exibirVendas();
+    atualizarDashboard();
+}
+
+// =========================
+// TELAS
+// =========================
 function exibirVendas() {
     const tbody = document.querySelector('tbody');
     if (!tbody) return;
@@ -51,16 +62,19 @@ function exibirVendas() {
     tbody.innerHTML = '';
 
     vendas.forEach((venda, index) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
+        total += venda.qtd * venda.preco;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
             <td>${venda.produto}</td>
             <td>${venda.qtd}</td>
             <td>R$ ${venda.preco.toFixed(2)}</td>
             <td>${venda.data}</td>
-            <td><button onclick="deletarVenda(${index})">Deletar</button></td>
+            <td>
+                <button onclick="deletarVenda(${index})">Excluir</button>
+            </td>
         `;
-        tbody.appendChild(row);
-        total += venda.qtd * venda.preco;
+        tbody.appendChild(tr);
     });
 
     const totalEl = document.getElementById('total');
@@ -69,9 +83,6 @@ function exibirVendas() {
     }
 }
 
-// =====================
-// DASHBOARD
-// =====================
 function atualizarDashboard() {
     const resumo = document.getElementById('resumo-total');
     if (!resumo) return;
@@ -79,29 +90,18 @@ function atualizarDashboard() {
     const vendas = getVendas();
     let total = 0;
 
-    vendas.forEach(venda => {
-        total += venda.qtd * venda.preco;
+    vendas.forEach(v => {
+        total += v.qtd * v.preco;
     });
 
     resumo.textContent = `Total de Vendas: R$ ${total.toFixed(2)} (${vendas.length} vendas)`;
 }
 
-// =====================
-// DELETE
-// =====================
-function deletarVenda(index) {
-    const vendas = getVendas();
-    vendas.splice(index, 1);
-    setVendas(vendas);
-    exibirVendas();
-    atualizarDashboard();
-}
-
-// =====================
-// INIT
-// =====================
+// =========================
+// INICIALIZAÇÃO
+// =========================
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.querySelector('form');
+    const form = document.querySelector('#form-venda');
     if (form) {
         form.addEventListener('submit', salvarVenda);
     }

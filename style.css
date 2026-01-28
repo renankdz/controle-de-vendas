@@ -1,9 +1,0 @@
-/* styles.css */
-body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-header { background: #007bff; color: white; padding: 10px; text-align: center; }
-nav a { color: white; margin: 0 10px; text-decoration: none; }
-form { max-width: 400px; margin: 20px auto; }
-input, button { display: block; width: 100%; margin: 10px 0; padding: 8px; }
-table { width: 80%; margin: 20px auto; border-collapse: collapse; }
-th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-@media (max-width: 600px) { table { width: 100%; font-size: 14px; } }
