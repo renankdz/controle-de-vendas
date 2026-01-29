@@ -1,33 +1,189 @@
+/* =========================
+   RESET BÁSICO
+========================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
 
+/* =========================
+   BODY
+========================= */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
+    background: #f4f6f8;
     color: #333;
+    min-height: 100vh;
 }
 
+/* =========================
+   HEADER
+========================= */
 header {
-    background-color: #1e88e5;
-    color: white;
-    padding: 16px;
+    background: linear-gradient(135deg, #1e90ff, #007bff);
+    color: #fff;
+    padding: 20px;
     text-align: center;
 }
 
+header h1 {
+    margin-bottom: 10px;
+    font-size: 26px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 nav a {
-    color: white;
-    margin: 0 10px;
+    color: #fff;
     text-decoration: none;
+    font-weight: 500;
+    transition: opacity 0.2s;
+}
+
+nav a:hover {
+    opacity: 0.8;
+}
+
+/* =========================
+   MAIN
+========================= */
+main {
+    padding: 30px;
+}
+
+/* =========================
+   FORMULÁRIO
+========================= */
+form {
+    background: #fff;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+form input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+button {
+    margin-top: 20px;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    background: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #005ecb;
+}
+
+/* Botões da tabela */
+.btn-editar {
+    background: #ffc107;
+    color: #000;
+    margin-right: 6px;
+}
+
+.btn-editar:hover {
+    background: #e0a800;
+}
+
+.btn-excluir {
+    background: #dc3545;
+}
+
+.btn-excluir:hover {
+    background: #b52a37;
+}
+
+/* =========================
+   TABELA
+========================= */
+table {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+thead {
+    background: #007bff;
+    color: #fff;
+}
+
+th, td {
+    padding: 14px;
+    text-align: center;
+}
+
+tbody tr:nth-child(even) {
+    background: #f2f2f2;
+}
+
+tbody tr:hover {
+    background: #eaf3ff;
+}
+
+/* =========================
+   TOTAL
+========================= */
+#total, #resumo-total {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 18px;
     font-weight: bold;
 }
 
-main {
-    max-width: 900px;
-    margin: 30px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 8px;
+/* =========================
+   RESPONSIVO
+========================= */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    table {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    form {
+        width: 100%;
+    }
 }

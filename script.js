@@ -10,6 +10,11 @@ function setVendas(vendas) {
 }
 
 // =========================
+// CONTROLE DE EDIÇÃO
+// =========================
+let indiceEmEdicao = null;
+
+// =========================
 // AÇÕES
 // =========================
 function salvarVenda(event) {
@@ -32,11 +37,33 @@ function salvarVenda(event) {
     };
 
     const vendas = getVendas();
-    vendas.push(venda);
+
+    if (indiceEmEdicao !== null) {
+        vendas[indiceEmEdicao] = venda;
+        indiceEmEdicao = null;
+    } else {
+        vendas.push(venda);
+    }
+
     setVendas(vendas);
 
-    document.querySelector('form').reset();
-    alert('Venda salva com sucesso!');
+    document.querySelector('#form-venda').reset();
+    exibirVendas();
+    atualizarDashboard();
+}
+
+// =========================
+// EDITAR / EXCLUIR
+// =========================
+function editarVenda(index) {
+    const vendas = getVendas();
+    const venda = vendas[index];
+
+    document.getElementById('produto').value = venda.produto;
+    document.getElementById('qtd').value = venda.qtd;
+    document.getElementById('preco').value = venda.preco;
+
+    indiceEmEdicao = index;
 }
 
 function deletarVenda(index) {
@@ -71,7 +98,8 @@ function exibirVendas() {
             <td>R$ ${venda.preco.toFixed(2)}</td>
             <td>${venda.data}</td>
             <td>
-                <button onclick="deletarVenda(${index})">Excluir</button>
+                <button class="btn-editar" data-index="${index}">Editar</button>
+                <button class="btn-excluir" data-index="${index}">Excluir</button>
             </td>
         `;
         tbody.appendChild(tr);
@@ -98,8 +126,18 @@ function atualizarDashboard() {
 }
 
 // =========================
-// INICIALIZAÇÃO
+// EVENTOS
 // =========================
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('btn-excluir')) {
+        deletarVenda(e.target.dataset.index);
+    }
+
+    if (e.target.classList.contains('btn-editar')) {
+        editarVenda(e.target.dataset.index);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('#form-venda');
     if (form) {
