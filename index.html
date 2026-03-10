@@ -20,9 +20,36 @@
 <main>
     <h2>Bem-vindo</h2>
     <p>Gerencie suas vendas de forma simples.</p>
-    <p id="resumo-total">Total de Vendas: R$ 0,00</p>
+
+    <h2>Resumo das Vendas</h2>
+
+    <section class="dashboard">
+
+<div class="card">
+<h3>Total Vendido</h3>
+<p id="total-vendido">R$ 0</p>
+</div>
+
+<div class="card">
+<h3>Total de Vendas</h3>
+<p id="total-vendas">0</p>
+</div>
+
+<div class="card">
+<h3>Ticket Médio</h3>
+<p id="ticket-medio">R$ 0</p>
+</div>
+
+</section>
 </main>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="script.js"></script>
+
+<canvas id="graficoVendas"></canvas>
+
+<a class="botao-principal" href="cadastro.html">
+Cadastrar Nova Venda
+</a>
 </body>
 </html>
