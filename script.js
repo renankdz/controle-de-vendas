@@ -50,17 +50,20 @@ function salvarVenda(event) {
     document.querySelector('#form-venda').reset();
     exibirVendas();
     atualizarDashboard();
-    criarGrafico();
 }
 
 // =========================
 // EDITAR / EXCLUIR
 // =========================
 function editarVenda(index) {
+    const vendas = getVendas();
+    const venda = vendas[index];
 
-localStorage.setItem("vendaEditando", index)
+    document.getElementById('produto').value = venda.produto;
+    document.getElementById('qtd').value = venda.qtd;
+    document.getElementById('preco').value = venda.preco;
 
-window.location.href = "cadastro.html"
+    indiceEmEdicao = index;
 }
 
 function deletarVenda(index) {
@@ -72,7 +75,6 @@ function deletarVenda(index) {
     setVendas(vendas);
     exibirVendas();
     atualizarDashboard();
-    criarGrafico();
 }
 
 // =========================
@@ -109,6 +111,20 @@ function exibirVendas() {
     }
 }
 
+function atualizarDashboard() {
+    const resumo = document.getElementById('resumo-total');
+    if (!resumo) return;
+
+    const vendas = getVendas();
+    let total = 0;
+
+    vendas.forEach(v => {
+        total += v.qtd * v.preco;
+    });
+
+    resumo.textContent = `Total de Vendas: R$ ${total.toFixed(2)} (${vendas.length} vendas)`;
+}
+
 // =========================
 // EVENTOS
 // =========================
@@ -131,78 +147,3 @@ document.addEventListener('DOMContentLoaded', () => {
     exibirVendas();
     atualizarDashboard();
 });
-function atualizarDashboard(){
-
-const vendas = getVendas()
-
-let total = 0
-
-vendas.forEach(v=>{
-total += v.qtd * v.preco
-})
-
-const totalVendas = vendas.length
-
-const ticketMedio = totalVendas > 0 ? total / totalVendas : 0
-
-const elTotal = document.getElementById("total-vendido")
-const elVendas = document.getElementById("total-vendas")
-const elTicket = document.getElementById("ticket-medio")
-
-if(elTotal){
-elTotal.textContent = "R$ " + total.toFixed(2)
-}
-
-if(elVendas){
-elVendas.textContent = totalVendas
-}
-
-if(elTicket){
-elTicket.textContent = "R$ " + ticketMedio.toFixed(2)
-}
-
-}
-let grafico = null
-function criarGrafico(){
-
-const canvas = document.getElementById("graficoVendas")
-
-if(!canvas) return
-
-const vendas = getVendas()
-
-const labels = vendas.map(v => v.produto)
-
-const dados = vendas.map(v => v.qtd * v.preco)
-
-if(grafico){
-grafico.destroy()
-}
-
-grafico = new Chart(canvas, {
-
-type: "bar",
-
-data: {
-
-labels: labels,
-
-datasets: [{
-
-label: "Valor das vendas",
-
-data: dados
-
-}]
-
-}
-
-})
-
-}
-document.addEventListener('DOMContentLoaded', () => {
-
-exibirVendas()
-atualizarDashboard()
-criarGrafico()
-})
