@@ -1,24 +1,32 @@
-# Controle de Vendas – Bolos de Pote 
+# Controle de Vendas – Bolos de Pote
 
-Projeto simples de controle de vendas desenvolvido com HTML, CSS e JavaScript.
-Permite cadastrar vendas, visualizar a lista de vendas e calcular o total vendido.
+Sistema de controle de vendas desenvolvido com HTML, CSS e JavaScript puro.
+Permite gerenciar vendas, visualizar dados e acompanhar métricas em tempo real.
 
-##  Funcionalidades
+## Funcionalidades
+
 - Cadastro de vendas
-- Listagem das vendas
+- Listagem dinâmica das vendas
+- Edição de vendas
+- Exclusão de vendas
+- Filtro de produtos em tempo real
 - Cálculo automático do total vendido
+- Dashboard com métricas:
+  - Total vendido
+  - Quantidade de vendas
+  - Ticket médio
+- Gráfico de vendas (Chart.js)
 - Armazenamento no navegador (localStorage)
 
-##  Tecnologias usadas
+## Tecnologias usadas
+
 - HTML5
 - CSS3
-- JavaScript (puro)
+- JavaScript (Vanilla JS)
+- Chart.js
 
-##  Como executar o projeto
-1. Baixe ou clone este repositório
-2. Abra o arquivo `index.html` no navegador  
-   **ou**
-3. Use a extensão Live Server no VS Code
+## Como executar o projeto
 
-##  Observações
-Projeto em evolução, criado para estudo e prática de desenvolvimento web, e analise de sistemas.
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repo.git
